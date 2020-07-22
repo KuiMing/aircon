@@ -12,7 +12,8 @@ os.environ['TEMPERATURE'] = "26"
 @app.route('/')
 def initial():
     temperature = os.getenv('TEMPERATURE')
-    return render_template('controller.html', result=temperature)
+    on_off = ['off', 'on'][int(os.getenv('POWER'))]
+    return render_template('controller.html', result=temperature, power=on_off)
 
 
 @app.route('/power')
@@ -56,4 +57,4 @@ def minus_temperature():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5566)
+    app.run(debug=True, port=5566, host='0.0.0.0')
