@@ -69,8 +69,16 @@ mode2 -d /dev/lirc0 > power_on
 3. Ctrl + C
 4. Ececute
 ```
-mode2 -d /dev/lirc0 > power_ff
+mode2 -d /dev/lirc0 > power_off
 ```
 5. Push power button of the remote controller for turning off.
 6. Ctrl + C
+
+## Edit configure file
+
+Extract the records from `mode2`, and replace those of configure file made by `irrecord`.
+
+```
+python3 create_conf.py -m power_on  -m power_off -c lircd_aircon_1.conf -o output.conf
+```
 
