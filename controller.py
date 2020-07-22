@@ -29,6 +29,8 @@ def add_temperature():
     on_off = int(os.getenv('POWER'))
     if on_off:
         os.system('say temperature up')
+        temperature = int(os.getenv('TEMPERATURE'))
+        os.environ['TEMPERATURE'] = str(temperature + 1)
     return redirect(url_for('initial'))
 
 @app.route('/minus')
@@ -36,6 +38,8 @@ def minus_temperature():
     on_off = int(os.getenv('POWER'))
     if on_off:
         os.system('say temperature down')
+        temperature = int(os.getenv('TEMPERATURE'))
+        os.environ['TEMPERATURE'] = str(temperature - 1)
     return redirect(url_for('initial'))
 
 if __name__ == '__main__':
