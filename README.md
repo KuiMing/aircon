@@ -79,6 +79,18 @@ mode2 -d /dev/lirc0 > power_off
 Extract the records from `mode2`, and replace those of configure file made by `irrecord`.
 
 ```
-python3 create_conf.py -m power_on  -m power_off -c lircd_aircon_1.conf -o output.conf
+python3 create_conf.py -m power_on  -m power_off -c <configure_file> -o output.conf
 ```
 
+## Setting configure file
+
+```
+sudo cp lircd_tv.conf /etc/lirc/lircd.conf
+lircd -d /dev/lirc0
+```
+
+## Send IR signal
+
+```
+irsend SEND_ONCE <configure_file> power_on
+```
