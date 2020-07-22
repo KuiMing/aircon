@@ -6,10 +6,12 @@ from flask import Flask, render_template, redirect, url_for
 
 app = Flask(__name__)
 os.environ["POWER"] = "0"
+os.environ['TEMPERATURE'] = "28"
 
 @app.route('/')
 def initial():
-    return render_template('controller.html')
+    temperature = os.getenv('TEMPERATURE')
+    return render_template('controller.html', result=temperature)
 
 @app.route('/power')
 def power():
