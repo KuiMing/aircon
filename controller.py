@@ -24,12 +24,16 @@ def power():
 
 @app.route('/add')
 def add_temperature():
-    os.system('say temperature up')
+    on_off = int(os.getenv('POWER'))
+    if on_off:
+        os.system('say temperature up')
     return redirect(url_for('initial'))
 
 @app.route('/minus')
 def minus_temperature():
-    os.system('say temperature down')
+    on_off = int(os.getenv('POWER'))
+    if on_off:
+        os.system('say temperature down')
     return redirect(url_for('initial'))
 
 if __name__ == '__main__':
