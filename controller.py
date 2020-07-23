@@ -41,8 +41,9 @@ def add_temperature():
     on_off = int(os.getenv('POWER'))
     if on_off:
         temperature = int(os.getenv('TEMPERATURE'))
-        os.environ['TEMPERATURE'] = str(temp_limit(temperature + 1))
-        # os.system('say temperature up')
+        temperature = temp_limit(temperature + 1)
+        os.environ['TEMPERATURE'] = str(temperature)
+        os.system('irsend SEND_ONCE aircon aircon_{}'.format(temperature))
     return redirect(url_for('initial'))
 
 
@@ -51,8 +52,9 @@ def minus_temperature():
     on_off = int(os.getenv('POWER'))
     if on_off:
         temperature = int(os.getenv('TEMPERATURE'))
-        os.environ['TEMPERATURE'] = str(temp_limit(temperature - 1))
-        # os.system('say temperature down')
+        temperature = temp_limit(temperature - 1)
+        os.environ['TEMPERATURE'] = str(temperature)
+        os.system('irsend SEND_ONCE aircon aircon_{}'.format(temperature))
     return redirect(url_for('initial'))
 
 
