@@ -40,7 +40,7 @@ def mode2_decode(mode2):
 @click.command()
 @click.option('-c', '--conf', help='input configure file')
 @click.option('-o', '--output', help='output configure file')
-@click.option('--mode2', '-m', multiple=True, defalt=None)
+@click.option('--mode2', '-m', multiple=True, default=None)
 @click.option(
     '--flist',
     '-l',
