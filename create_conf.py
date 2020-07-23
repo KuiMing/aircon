@@ -40,11 +40,26 @@ def mode2_decode(mode2):
 @click.command()
 @click.option('-c', '--conf', help='input configure file')
 @click.option('-o', '--output', help='output configure file')
-@click.option('--mode2', '-m', multiple=True, default=["benq.log"])
-def main(mode2, conf, output):
+@click.option('--mode2', '-m', multiple=True, defalt=None)
+@click.option(
+    '--flist',
+    '-l',
+    help="A text file with list of mode2 log file",
+    default=None)
+def main(mode2, conf, output, flist):
     """
     convert record from mode2 into configure file
     """
+    if flist:
+        with open(flist, 'r') as f:
+            files = f.read()
+        f.close()
+        files = files.split('\n')
+        files = files[:-1]
+    elif mode2:
+        files = mode2
+    else:
+        print("need file list or mode2 log")
     with open(conf, 'r') as f_file:
         temp = f_file.read()
     f_file.close()
@@ -52,7 +67,7 @@ def main(mode2, conf, output):
     temp[0] += 'begin raw_codes\n\n'
     with open(output, 'w') as f_file:
         f_file.write(temp[0])
-        for i in mode2:
+        for i in files:
             f_file.write(mode2_decode(i))
         f_file.write("      end raw_codes\n\nend remote\n")
     f_file.close()
