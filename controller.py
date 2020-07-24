@@ -22,7 +22,7 @@ def temperature_measurement(model, gpio):
 @app.route('/')
 def initial():
     temperature = os.getenv('TEMPERATURE')
-    os.environ["INDOOR"] = indoor
+    os.environ["INDOOR"] = os.getenv("INDOOR")
     power_figure = os.getenv('POWERFIGURE')
     return render_template('controller.html', setting=temperature, indoor=indoor, power=power_figure)
 
