@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html>
 <title>Aircon</title>
+    
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+    var intervalID = setInterval(update_values, 60000);
+    function update_values() {
+        $.getJSON('/indoor_temperature',
+            function (data) {
+                $('#result').text(data.result);
+                console.log(data)
+            });
+    };
+    function stopTextColor() {
+        clearInterval(intervalID);
+    }
+</script>
+
+<script>
+    document.getElementById("result").innerHTML;
+</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -10,7 +31,9 @@
             <div class="w3-display-container w3-text-white">
                 <img src="static/sunset.jpg" alt="Lights" style="width:100%">
                 <div class="w3-xlarge w3-display-bottomleft w3-padding">{{setting}}&deg; C</div>
-                <div class="w3-xlarge w3-display-bottomright w3-padding"><font color="#FFD2D2">{{indoor}}&deg; C</font></div>
+                <div class="w3-xlarge w3-display-bottomright w3-padding">
+                    <font color="#FFD2D2" id="result">{{indoor}}</font><font color="#FFD2D2">&deg; C</font>
+                </div>
             </div>
             <div class="w3-row">
                 <div class="w3-third w3-center">
