@@ -101,3 +101,10 @@ lircd -d /dev/lirc0
 irsend SEND_ONCE <configure_file> power_on
 ```
 
+### Renew configure file
+
+```
+sudo cp new.conf /etc/lirc/lircd.conf
+sudo rm /var/run/lirc/lircd.pid
+lircd -d /dev/lirc0
+```
