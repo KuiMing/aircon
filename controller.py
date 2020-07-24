@@ -4,7 +4,7 @@ Air conditiner controller
 import os
 import time
 from threading import Thread
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, jsonify
 import Adafruit_DHT
 
 app = Flask(__name__)
