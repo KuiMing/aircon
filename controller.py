@@ -12,17 +12,15 @@ os.environ["POWER"] = "0"
 os.environ['TEMPERATURE'] = "26"
 os.environ['POWERFIGURE'] = "start-button"
 
-def temperature_measurement(model, gpio):
-    while True:
-        humidity, indoor = Adafruit_DHT.read_retry(model, gpio)
-        os.environ["INDOOR"] = str(indoor)
-        os.environ['HUMIDITY'] = str(humidity)
-        time.sleep(60)
+@app.route('/indoor_temperature')
+def temperature_measurement():
+    _, indoor = Adafruit_DHT.read_retry(11, 27)
+    return jsonify(result=indoor)
 
 @app.route('/')
 def initial():
     temperature = os.getenv('TEMPERATURE')
-    indoor = os.getenv("INDOOR")
+    _, indoor = Adafruit_DHT.read_retry(11, 27)
     power_figure = os.getenv('POWERFIGURE')
     return render_template('controller.html', setting=temperature, indoor=indoor, power=power_figure)
 
@@ -71,6 +69,4 @@ def minus_temperature():
 
 
 if __name__ == '__main__':
-    t = Thread(target=temperature_measurement, args=(11, 27))
-    t.start()
     app.run(debug=True, port=5566, host='0.0.0.0')
