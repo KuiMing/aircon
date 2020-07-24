@@ -7,13 +7,14 @@ from flask import Flask, render_template, redirect, url_for
 app = Flask(__name__)
 os.environ["POWER"] = "0"
 os.environ['TEMPERATURE'] = "26"
-
+os.environ['POWERFIGURE'] = "start-button"
 
 @app.route('/')
 def initial():
     temperature = os.getenv('TEMPERATURE')
-    on_off = ['off', 'on'][int(os.getenv('POWER'))]
-    return render_template('controller.html', result=temperature, power=on_off)
+    indoor = 30
+    power_figure = os.getenv('POWERFIGURE')
+    return render_template('controller.html', setting=temperature, indoor=indoor, power=power_figure)
 
 
 @app.route('/power')
@@ -22,11 +23,12 @@ def power():
     if on_off:
         os.system('irsend SEND_ONCE aircon power_off')
         os.environ["POWER"] = "0"
+        os.environ['POWERFIGURE'] = "start-button"
     else:
         os.system('irsend SEND_ONCE aircon power_on')
         os.environ["POWER"] = "1"
+        os.environ['POWERFIGURE'] = "start-button-on"
     return redirect(url_for('initial'))
-
 
 def temp_limit(temp):
     if temp < 18:
