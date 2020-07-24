@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
+<title>Aircon</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -9,8 +9,8 @@
         <div class="w3-card-4 w3-margin" style="width:70%">
             <div class="w3-display-container w3-text-white">
                 <img src="static/sunset.jpg" alt="Lights" style="width:100%">
-                <div class="w3-xlarge w3-display-bottomleft w3-padding">{{result}}&deg; C </div>
-                <div class="w3-xlarge w3-display-bottomright w3-padding">Power {{power}}</div>
+                <div class="w3-xlarge w3-display-bottomleft w3-padding">{{setting}}&deg; C</div>
+                <div class="w3-xlarge w3-display-bottomright w3-padding"><font color="#FFD2D2">{{indoor}}&deg; C</font></div>
             </div>
             <div class="w3-row">
                 <div class="w3-third w3-center">
@@ -22,7 +22,7 @@
                 <div class="w3-third w3-center">
                     <p></p>
                     <a href='power'>
-                        <img src="static/start-button.png" style="width:80px">
+                        <img src="static/{{power}}.png" style="width:80px">
                     </a>
                 </div>
                 <div class="w3-third w3-center w3-margin-bottom">
