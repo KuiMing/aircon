@@ -1,5 +1,11 @@
 # IR Remote Controller with Raspberry Pi
 
+## Schematic
+
+![](https://i.imgur.com/Lg8nvLA.png)
+
+Reference: https://medium.com/@camilloaddis/smart-air-conditioner-with-raspberry-pi-an-odissey-2a5b438fe984
+
 ## Install LIRC
 
 ```
@@ -85,7 +91,7 @@ python3 create_conf.py -m power_on  -m power_off -c <configure_file> -o output.c
 ## Setting configure file
 
 ```
-sudo cp lircd_tv.conf /etc/lirc/lircd.conf
+sudo cp output.conf /etc/lirc/lircd.conf
 lircd -d /dev/lirc0
 ```
 
@@ -94,3 +100,4 @@ lircd -d /dev/lirc0
 ```
 irsend SEND_ONCE <configure_file> power_on
 ```
+
