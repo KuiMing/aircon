@@ -15,7 +15,7 @@ os.environ['POWERFIGURE'] = "start-button"
 def temperature_measurement(model, gpio):
     while True:
         humidity, indoor = Adafruit_DHT.read_retry(model, gpio)
-        os.environ["INDOOR"] = indoor
+        os.environ["INDOOR"] = str(indoor)
         os.environ['HUMIDITY'] = humidity
         time.sleep(60)
 
