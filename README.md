@@ -1,5 +1,19 @@
 # IR Remote Controller with Raspberry Pi
 
+
+## Bill Of Material
+
+- Raspberry Pi 3 Model B * 1
+- Breadboard * 1 
+- IR Reciever VS/HX1838B * 1
+- IR Transmitter LED * 1
+- NPN Transister S9013 * 1
+- Temperature and Humidity Sensor DHT11 * 1
+- Resister 
+    - 220 Ω * 1
+    - 10k Ω * 1
+- Jumper wires * 17
+
 ## Schematic
 
 ![](https://i.imgur.com/Lg8nvLA.png)
