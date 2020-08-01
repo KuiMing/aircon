@@ -62,6 +62,7 @@ sudo /etc/init.d/lircd start
 
 - Reboot raspberry pi
 
+If the gpio is changed, please edit `/etc/modules` file and `/boot/config.txt` file, and restart LIRC and reboot.
 
 ## Record IR Signal
 
