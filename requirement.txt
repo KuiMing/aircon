@@ -1,0 +1,3 @@
+Click
+Flask
+Adafruit_DHT
