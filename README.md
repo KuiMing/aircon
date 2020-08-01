@@ -62,6 +62,7 @@ sudo /etc/init.d/lircd start
 
 - Reboot raspberry pi
 
+
 ## Record IR Signal
 
 ### irrecord
@@ -102,6 +103,35 @@ Extract the records from `mode2`, and replace those of configure file made by `i
 python3 create_conf.py -m power_on  -m power_off -c <configure_file> -o output.conf
 ```
 
+OR
+
+If there is a list of `mode2` record files which is listed in a text file, like this:
+
+mode2.txt
+```
+aircon_18.log
+aircon_19.log
+aircon_20.log
+aircon_21.log
+aircon_22.log
+aircon_23.log
+aircon_24.log
+aircon_25.log
+aircon_26.log
+aircon_27.log
+aircon_28.log
+aircon_29.log
+aircon_30.log
+power_off.log
+power_on.log
+```
+
+the configure file can be edited in this way:
+
+```
+python3 create_conf.py -l mode2.txt -c <configure_file> -o output.conf
+```
+
 ## Setting configure file
 
 ```
@@ -115,7 +145,9 @@ lircd -d /dev/lirc0
 irsend SEND_ONCE <configure_file> power_on
 ```
 
-### Renew configure file
+## Renew configure file
+
+Sometimes, we want to add some functions or change the device, we have to renew the configure file.
 
 ```
 sudo cp new.conf /etc/lirc/lircd.conf
